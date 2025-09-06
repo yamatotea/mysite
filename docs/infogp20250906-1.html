@@ -1,0 +1,259 @@
+<!DOCTYPE html>
+<html lang="ja">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>大和茶インフォグラフィック</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <style>
+        body {
+            font-family: 'Noto Sans JP', sans-serif;
+            background-color: #F8F5EE; /* 柔らかいクリーム色 */
+            color: #4C4B46; /* ダークグレー */
+        }
+        h1, h2, h3 {
+            font-family: 'Noto Serif JP', serif;
+        }
+        .chart-container {
+            position: relative;
+            width: 100%;
+            max-width: 800px;
+            margin-left: auto;
+            margin-right: auto;
+            height: 450px;
+        }
+    </style>
+</head>
+<body class="antialiased">
+
+    <!-- Application Structure Plan: このインフォグラフィックは、ユーザーを物語に引き込むためのトップダウン式のナラティブスクロール構造を採用しています。まず、没入感のあるヒーローセクションで大和茶の世界観を提示し、次に産地の風土（テロワール）と歴史的背景を解説します。続いて、生産者のストーリーを通じて製品に人間的な温かみを与え、最後にチャートを用いて多様な茶の種類を視覚的に比較します。この「WHAT→WHERE→WHEN→WHO→HOW」という流れは、ユーザーの理解を段階的に深め、エンゲージメントを高めるために最適化されています。 -->
+    <!-- Visualization & Content Choices: ヒーローセクション(目的:エンゲージ→手法:背景画像)で視覚的なインパクトを与える。主要データ(目的:情報伝達→手法:タイポグラフィ)で要点を強調。風土(目的:整理→手法:アイコン付きカード)で環境要因を分かりやすく分解。歴史(目的:時間的変化→手法:HTML/CSSタイムライン)で起源を簡潔に提示。生産者紹介(目的:情報伝達→手法:画像付きカード)で製品の背景にある物語を伝える。茶の種類(目的:比較→手法:Chart.js縦棒グラフ)で複数製品の特性を一覧比較。SVG/Mermaid JSは不使用。 -->
+    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+
+    <header class="h-screen bg-cover bg-center flex items-center justify-center text-white text-center px-4" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('https://www.maff.go.jp/j/keikaku/syokubunka/traditional-foods/files/topics/238_ext_01_0_L.jpg');">
+        <div>
+            <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-wider">大和茶</h1>
+            <p class="text-xl md:text-2xl font-light">奈良の自然と歴史が育む、伝統の一杯。</p>
+        </div>
+    </header>
+
+    <main class="container mx-auto px-6 py-16 md:py-24 space-y-20 md:space-y-32">
+
+        <section class="max-w-4xl mx-auto text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">大和茶とは</h2>
+            <p class="text-lg leading-relaxed">
+                奈良県の大和高原を中心に栽培される伝統的な大和茶は、香りが高く、渋みがありながらも、すっきりとさわやかな味わいが特徴です。<br>その一杯には奈良の豊かな自然と悠久の歴史が溶け込んでいます。
+            </p>
+        </section>
+
+        <section class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">歴史と風土</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+                <div class="md:text-left text-center md:order-1">
+                    <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">大和茶の起源</h3>
+                    <p class="text-lg leading-relaxed">
+                        大和茶の歴史は、平安時代初頭の806年に遡ります。弘法大師空海が唐から茶の種子を持ち帰り、現在の宇陀市に播種したのがその始まりと伝えられています。
+                    </p>
+                </div>
+                <div class="md:order-2 w-full flex justify-center">
+                    <img src="https://www.asahi.com/special/art/images/OSK201211200007.jpg" alt="空海と茶の伝来" class="rounded-lg shadow-lg mb-6 max-h-96 object-cover">
+                </div>
+            </div>
+        </section>
+
+        <section class="text-center">
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">産地紹介（奈良市田原地区）</h2>
+            <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
+                <div class="md:text-left text-center md:order-1">
+                    <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">田原地区の気候と土壌</h3>
+                    <p class="text-lg leading-relaxed mb-4">
+                        主産地である大和高原は、標高200～500mの冷涼な気候が特徴です。昼夜の大きな寒暖差が茶葉の成長をじっくりと促し、豊かな香りと深い味わいを生み出す理想的な環境です。
+                    </p>
+                    <p class="text-lg font-bold text-[#4C4B46]">
+                        特に昔から大和茶の産地として知られてきた田原地区は、この恵まれた環境が凝縮されています。
+                    </p>
+                </div>
+                <div class="md:order-2 w-full flex justify-center">
+                    <img src="https://cdn.jalan.jp/jalan/img/4/kuchikomi/5284/KL/7981f_0005284459_1.webp" alt="奈良大和高原の茶畑" class="rounded-lg shadow-lg w-full h-auto object-cover max-h-[480px]">
+                </div>
+            </div>
+        </section>
+
+        <section>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">生産者の顔</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12">
+                大和茶の伝統を未来へ繋ぐ、田原地区の熱心な生産者たちをご紹介します。
+            </p>
+            <div class="space-y-12 max-w-5xl mx-auto">
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="md:col-span-2">
+                        <img src="https://image.rakuten.co.jp/giftnomura/cabinet/yamatotya/imgrc0073707403.jpg" alt="福井佐和さん" class="rounded-lg object-cover w-full h-80">
+                    </div>
+                    <div class="md:col-span-3">
+                        <h3 class="text-2xl font-bold mb-2 text-[#7A6C5B]">田原ナチュラル・ファーム</h3>
+                        <p class="font-bold text-lg mb-2">福井 佐和さん</p>
+                        <p class="mb-4">百貨店勤務を経て、自然農法の道へ。農薬や化学肥料を一切使わず、茶と野菜を育てる佐和さん。「人もお茶も野菜も虫も みんな結（ゆい）でつながる」という信条のもと、自然との調和を大切にしたお茶作りを実践しています。爽やかな甘みとすっきりとした渋みが特徴です。</p>
+                        <p class="text-md font-bold mt-4 text-[#5E8C6A] tracking-wider">
+                            <span class="text-lg text-[#5E8C6A] font-bold">資源循環型農業</span> / <span class="text-lg text-[#5E8C6A] font-bold">農薬・化学肥料・除草剤 不使用</span>
+                        </p>
+                    </div>
+                </div>
+
+                <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
+                    <div class="md:col-span-3 md:order-2">
+                        <h3 class="text-2xl font-bold mb-2 text-[#7A6C5B]">有機抹茶を作る窪田リンゴ園の農家</h3>
+                        <p class="font-bold text-lg mb-2">窪田 弘さん</p>
+                        <p class="mb-4">100年以上続くお茶農家が作った抹茶。<br>窪田さんは60歳で定年を迎えた後、茶畑の一部をりんご園に転換しました。当園がある田原地区は朝晩の寒暖差や豊富な水源があり、お茶作りに最適と言われています。自然に寄り添いながら、丁寧に育てた茶葉を**石臼で挽くことで**、香り高く、深みと甘みの両方を味わうことができます。そのままで飲むのはもちろん、製菓や製パン材料としてもお使いいただけます。</p>
+                        <p class="text-md font-bold mt-4 text-[#5E8C6A] tracking-wider">
+                            <span class="text-lg text-[#5E8C6A] font-bold">有機堆肥</span> / <span class="text-lg text-[#5E8C6A] font-bold">抹茶</span>
+                        </p>
+                    </div>
+                    <div class="md:col-span-2 md:order-1">
+                        <img src="https://cdn.activityboard.jp/KR00844763/pictures/l000032401/P000188E48.jpg" alt="窪田弘さん" class="rounded-lg object-cover w-full h-80">
+                    </div>
+                </div>
+            </div>
+        </section>
+        
+        <section class="max-w-4xl mx-auto text-center mt-20 p-8 rounded-xl shadow-lg border border-gray-200">
+            <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">抹茶の石臼挽き</h3>
+            <p class="text-lg leading-relaxed text-left mb-4">
+                石臼挽き（石臼碾き）とは、抹茶の原料「碾茶（てんちゃ）」を出荷直前に石臼で粉末にする伝統的な製法です。石臼は精緻な目が刻まれた上臼と下臼で構成され、上臼に碾茶を入れて挽木（まわし手）を回すと、茶葉がゆっくりと粉砕されます。
+            </p>
+            <p class="text-lg leading-relaxed text-left mb-4">
+                ミキサーやミルなど機械の高速回転を利用すれば短時間で抹茶が作れますが、粒が不揃いになりやすく、摩擦熱で香りや風味が損なわれます。
+            </p>
+            <p class="text-lg leading-relaxed text-left mb-4">
+                一方、時間も手間もかかる石臼挽きは摩擦熱が少なく、均一で香り豊かな抹茶が得られます。
+            </p>
+        </section>
+
+        <section>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">風味の探求</h2>
+            <p class="max-w-3xl mx-auto text-center mb-12">
+                大和茶は、製法の違いによって多様な表情を見せます。<br>それぞれの個性を縦棒グラフで比較してみましょう。
+            </p>
+            <div class="chart-container">
+                <canvas id="teaTypesChart"></canvas>
+            </div>
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
+                <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">煎茶</h3>
+                    <p class="text-gray-700">爽やかな香りと、バランスの取れた旨み、適度な苦みが特徴。日常のお茶として幅広く楽しまれています。</p>
+                </div>
+                <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">かぶせ茶</h3>
+                    <p class="text-gray-700">収穫前に茶葉を黒い寒冷紗で覆うことによって、渋みを抑え、まろやかな旨みを引き出しています。</p>
+                </div>
+                <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">深蒸し茶</h3>
+                    <p class="text-gray-700">通常より長く蒸すことで、濃厚な味わいと深い緑色の水色に。渋みが少なく、まろやかで飲みやすいのが特徴です。</p>
+                </div>
+                <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
+                    <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">抹茶</h3>
+                    <p class="text-gray-700">碾茶を石臼などで丁寧に挽いたきめ細かな粉末の緑茶。飲用はもちろん、スイーツや料理など幅広い用途で人気です。</p>
+                </div>
+            </div>
+        </section>
+        
+        <section class="max-w-4xl mx-auto text-center text-sm text-gray-500 mt-20">
+            <h2 class="text-xl font-bold mb-4 text-[#7A6C5B]">出典 (Sources)</h2>
+            <ul class="space-y-2">
+                <li><a href="https://www.maff.go.jp/j/keikaku/syokubunka/traditional-foods/files/topics/238_ext_01_0_L.jpg" target="_blank" class="hover:underline">農林水産省</a></li>
+                <li><a href="https://www.asahi.com/special/art/images/OSK201211200007.jpg" target="_blank" class="hover:underline">朝日新聞</a></li>
+                <li><a href="https://cdn.jalan.jp/jalan/img/4/kuchikomi/5284/KL/7981f_0005284459_1.webp" target="_blank" class="hover:underline">じゃらんnet</a></li>
+                <li><a href="https://image.rakuten.co.jp/giftnomura/cabinet/yamatotya/imgrc0073707403.jpg" target="_blank" class="hover:underline">楽天市場</a></li>
+                <li><a href="https://cdn.activityboard.jp/KR00844763/pictures/l000032401/P000188E48.jpg" target="_blank" class="hover:underline">アクティビティジャパン</a></li>
+                <li><a href="https://onoen.jp/column/column_71.html" target="_blank" class="hover:underline">小野園</a></li>
+                <li><a href="https://www.the-tea-crane.com/jpn/2020/03/23/matcha-manufacturing/?srsltid=AfmBOopM1kxCBnqL7O-LnJkCuPNyR97D2b8ZKlG-VqsvURpAD56IK2_C" target="_blank" class="hover:underline">The Tea Crane</a></li>
+            </ul>
+        </section>
+
+    </main>
+
+    <footer class="bg-[#5E8C6A] text-white text-center py-8">
+        <p>&copy; 2025 Yamato.Tealeaf All Rights Reserved.</p>
+    </footer>
+
+    <script>
+        document.addEventListener('DOMContentLoaded', function () {
+            const ctx = document.getElementById('teaTypesChart').getContext('2d');
+            const teaChart = new Chart(ctx, {
+                type: 'bar',
+                data: {
+                    labels: ['煎茶', 'かぶせ茶', '深蒸し茶', '抹茶'],
+                    datasets: [{
+                        label: '旨味',
+                        data: [3, 4, 4, 5],
+                        backgroundColor: '#5E8C6A', // Primary Green
+                    }, {
+                        label: '香り',
+                        data: [4, 4, 3, 5],
+                        backgroundColor: '#A4B89D', // Accent Green
+                    }, {
+                        label: '渋み',
+                        data: [4, 2, 1, 2],
+                        backgroundColor: '#7A6C5B', // Accent Brown
+                    }]
+                },
+                options: {
+                    responsive: true,
+                    maintainAspectRatio: false,
+                    scales: {
+                        x: {
+                            ticks: {
+                                color: '#4C4B46',
+                                font: {
+                                    size: 14,
+                                    family: "'Noto Sans JP', sans-serif"
+                                }
+                            },
+                            grid: {
+                                display: false,
+                            }
+                        },
+                        y: {
+                            beginAtZero: true,
+                            max: 5,
+                            ticks: {
+                                color: '#4C4B46'
+                            },
+                             grid: {
+                                color: '#D3CFC2',
+                            }
+                        }
+                    },
+                    plugins: {
+                        legend: {
+                            position: 'top',
+                            labels: {
+                                font: {
+                                    size: 14,
+                                    family: "'Noto Sans JP', sans-serif"
+                                }
+                            }
+                        },
+                        tooltip: {
+                            callbacks: {
+                                title: function(tooltipItems) {
+                                    const item = tooltipItems[0];
+                                    let label = item.chart.data.labels[item.dataIndex];
+                                    if (Array.isArray(label)) {
+                                      return label.join(' ');
+                                    } else {
+                                      return label;
+                                    }
+                                }
+                            }
+                        }
+                    }
+                }
+            });
+        });
+    </script>
+</body>
+</html>

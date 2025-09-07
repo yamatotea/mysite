@@ -3,17 +3,17 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Yamato Tea | Nara</title>
+    <title>Yamatocha | Nara</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-    <link href="https://fonts.googleapis.com/css2?family=Noto+Sans+JP:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;700&family=Noto+Serif+JP:wght@400;700&display=swap" rel="stylesheet">
     <style>
         body {
-            font-family: 'Noto Sans JP', sans-serif;
-            background-color: #F8F5EE; /* Soft cream color */
-            color: #4C4B46; /* Dark gray */
+            font-family: 'Inter', sans-serif;
+            background-color: #F8F5EE; /* A soft cream color */
+            color: #4C4B46; /* A dark gray color */
         }
         h1, h2, h3 {
             font-family: 'Noto Serif JP', serif;
@@ -30,63 +30,63 @@
 </head>
 <body class="antialiased">
 
-    <!-- Application Structure Plan: This infographic uses a top-down narrative scroll structure to draw the user into a story. It begins with an immersive hero section to present the world of Yamato Tea, followed by an explanation of the regional climate (terroir) and historical background. The story of the producers adds a human warmth to the product, and finally, a chart visually compares the various types of tea. This "WHAT→WHERE→WHEN→WHO→HOW" flow is optimized to gradually deepen user understanding and engagement. -->
-    <!-- Visualization & Content Choices: The hero section (Goal: Engage → Method: Background image) provides a visual impact. Key data (Goal: Convey information → Method: Typography) emphasizes key points. Climate (Goal: Organize → Method: Cards with icons) breaks down environmental factors for clarity. History (Goal: Show temporal change → Method: HTML/CSS Timeline) presents the origin concisely. Producer profiles (Goal: Convey information → Method: Cards with images) tell the story behind the products. Tea types (Goal: Compare → Method: Chart.js Vertical Bar Chart) provides an at-a-glance comparison of multiple products' characteristics. NO SVG/Mermaid JS used. -->
-    <!-- CONFIRMATION: NO SVG graphics used. NO Mermaid JS used. -->
+    <!-- Application Structure Plan: This infographic follows a narrative scroll structure, drawing the user into the story from top to bottom. It starts with an immersive hero section to set the scene, then explains the regional terroir and historical background. The stories of the producers add a human warmth to the product, and finally, a chart visually compares different types of tea. The flow is optimized to deepen user understanding and interest gradually, following the progression of "WHAT -> WHERE -> WHEN -> WHO -> HOW." -->
+    <!-- Visualizations and Content Selection: A hero section is used for visual impact (Objective: engage -> Method: background image). Key data points are highlighted with typography (Objective: inform -> Method: large text). Climate factors are broken down for clarity using cards with icons (Objective: organize -> Method: cards with icons). A historical timeline (Objective: show progression in time -> Method: HTML/CSS timeline) concisely presents its origins. Producer profiles tell the story behind the product (Objective: inform -> Method: image cards). Different tea types are compared at a glance using a Chart.js vertical bar graph (Objective: compare -> Method: Chart.js vertical bar chart). No SVG or Mermaid JS will be used. -->
+    <!-- Verification: No SVG graphics are used. No Mermaid JS is used. -->
 
     <header class="h-screen bg-cover bg-center flex items-center justify-center text-white text-center px-4" style="background-image: linear-gradient(rgba(0,0,0,0.4), rgba(0,0,0,0.4)), url('images/238_ext_01_0_L.jpg');">
         <div>
             <h1 class="text-5xl md:text-7xl font-bold mb-4 tracking-wider">Yamato Tea</h1>
-            <p class="text-xl md:text-2xl font-light">A traditional cup nurtured by the nature and history of Nara.</p>
+            <p class="text-xl md:text-2xl font-light">A Sip of Tradition, Nature, and History</p>
         </div>
     </header>
 
     <main class="container mx-auto px-6 py-16 md:py-24 space-y-20 md:space-y-32">
 
         <section class="max-w-4xl mx-auto text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">What is Yamato Tea?</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">Experience the Taste of Nara’s Heritage</h2>
             <p class="text-lg leading-relaxed">
-                Grown mainly in the Yamato Highlands of Nara Prefecture, traditional Yamato Tea is characterized by its high aroma and a refreshing, clear taste despite its astringency.<br>Each cup is a blend of Nara's rich nature and its timeless history.
+                Grown in the highlands of Yamato, Nara, Yamato Tea is celebrated for its delicate aroma, gentle astringency, and refreshing, clean flavor. With every sip, you can feel the richness of nature and over 1,200 years of history.
             </p>
         </section>
 
         <section class="text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">History and Climate</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">The Origin of Yamato Tea</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
                 <div class="md:text-left text-center md:order-1">
-                    <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">The Origin of Yamato Tea</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">The Roots of Yamatocha</h3>
                     <p class="text-lg leading-relaxed">
-                        The history of Yamato Tea dates back to 806 A.D. in the early Heian period. It is said to have begun when Kobo Daishi Kukai brought tea seeds back from Tang China and sowed them at Butsuryu-ji Temple (now in Uda City).
+                        Yamato Tea traces its roots back to the early Heian period, when the revered monk Kobo Daishi Kukai brought tea seeds from China and planted them at Butsuryuji Temple (present-day Uda City). Since then, Yamato Tea has symbolized quality and tradition.
                     </p>
                 </div>
                 <div class="md:order-2 w-full flex justify-center">
-                    <img src="images/OSK201211200007.jpg" alt="Kukai and the introduction of tea" class="rounded-lg shadow-lg mb-6 max-h-96 object-cover">
+                    <img src="images/OSK201211200007.jpg" alt="Kukai and the origin of tea" class="rounded-lg shadow-lg mb-6 max-h-96 object-cover">
                 </div>
             </div>
         </section>
 
         <section class="text-center">
-            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">Introducing the Production Area (Taharu District, Nara City)</h2>
+            <h2 class="text-3xl md:text-4xl font-bold mb-6 text-[#5E8C6A]">Ideal Growing Conditions</h2>
             <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center max-w-5xl mx-auto">
                 <div class="md:text-left text-center md:order-1">
-                    <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">Climate and Soil of Taharu District</h3>
+                    <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">The Yamato Highlands</h3>
                     <p class="text-lg leading-relaxed mb-4">
-                        The main production area, the Yamato Highlands, is known for its cool climate at an altitude of 200-500 meters. The significant temperature difference between day and night encourages the tea leaves to grow slowly, creating an ideal environment for a rich aroma and deep flavor.
+                        The Yamato Highlands, at 200–500 meters above sea level, offer a cool climate with significant temperature differences between day and night. This allows tea leaves to grow slowly, developing rich aroma and deep flavor.
                     </p>
                     <p class="text-lg font-bold text-[#4C4B46]">
-                        The Taharu district, in particular, which has been known as a Yamato Tea production area since ancient times, is where this blessed environment is most concentrated.
+                        The Tawara District, a historic tea-producing area, embodies this perfect environment.
                     </p>
                 </div>
                 <div class="md:order-2 w-full flex justify-center">
-                    <img src="https://cdn.jalan.jp/jalan/img/4/kuchikomi/5284/KL/7981f_0005284459_1.webp" alt="Tea plantations in Nara Yamato Highlands" class="rounded-lg shadow-lg w-full h-auto object-cover max-h-[480px]">
+                    <img src="https://cdn.jalan.jp/jalan/img/4/kuchikomi/5284/KL/7981f_0005284459_1.webp" alt="Tea fields in the Yamato Highlands, Nara" class="rounded-lg shadow-lg w-full h-auto object-cover max-h-[480px]">
                 </div>
             </div>
         </section>
 
         <section>
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">Meet the Producers</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">Meet Our Passionate Tea Growers</h2>
             <p class="max-w-3xl mx-auto text-center mb-12">
-                We'd like to introduce you to the passionate producers in the Taharu district who are carrying on the tradition of Yamato Tea.
+                With every sip, you can feel the richness of nature and over 1,200 years of history.
             </p>
             <div class="space-y-12 max-w-5xl mx-auto">
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
@@ -94,23 +94,15 @@
                         <img src="images/imgrc0073707403.jpg" alt="Sawa Fukui" class="rounded-lg object-cover w-full h-80">
                     </div>
                     <div class="md:col-span-3">
-                        <h3 class="text-2xl font-bold mb-2 text-[#7A6C5B]">Taharu Natural Farm</h3>
-                        <p class="font-bold text-lg mb-2">Sawa Fukui</p>
-                        <p class="mb-4">After working at a department store, Sawa decided to pursue a career in agriculture, wanting to work with nature. She grows tea and vegetables without any pesticides or chemical fertilizers. Based on her belief that "people, tea, vegetables, and insects are all connected by yui (bonds)," she practices tea farming that values harmony with nature. Her tea is characterized by a refreshing sweetness and a clean astringency.</p>
-                        <p class="text-md font-bold mt-4 text-[#5E8C6A] tracking-wider">
-                            <span class="text-lg text-[#5E8C6A] font-bold">Resource-Recycling Agriculture</span> / <span class="text-lg text-[#5E8C6A] font-bold">No Pesticides, Chemical Fertilizers, or Herbicides</span>
-                        </p>
+                        <h3 class="text-2xl font-bold mb-2 text-[#7A6C5B]">Sawa Fukui – Tawara Natural Farm</h3>
+                        <p class="mb-4">After working in a department store, Sawa Fukui pursued a life close to nature, growing tea and vegetables without any chemicals. She believes, “People, tea, vegetables, and insects… everything is connected through ‘Yui’ (bonding).” Her teas are known for their refreshing sweetness and subtle astringency.</p>
                     </div>
                 </div>
 
                 <div class="grid grid-cols-1 md:grid-cols-5 gap-8 items-center bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
                     <div class="md:col-span-3 md:order-2">
-                        <h3 class="text-2xl font-bold mb-2 text-[#7A6C5B]">The Farmer of Kubota Apple Orchard Who Makes Organic Matcha</h3>
-                        <p class="font-bold text-lg mb-2">Hiroshi Kubota</p>
-                        <p class="mb-4">Matcha made by a tea farmer whose family has been in the business for over 100 years.<br>After retiring at age 60, Mr. Kubota converted a part of his tea field into an apple orchard. The Taharu district, where the farm is located, is blessed with significant temperature differences between morning and night and abundant water sources, making it ideal for tea cultivation. By carefully grinding tea leaves grown only with organic compost using a stone mill, he produces matcha with a rich aroma, depth, and sweetness. It can be enjoyed on its own or used as an ingredient for sweets and baking.</p>
-                        <p class="text-md font-bold mt-4 text-[#5E8C6A] tracking-wider">
-                            <span class="text-lg text-[#5E8C6A] font-bold">Organic Compost</span> / <span class="text-lg text-[#5E8C6A] font-bold">Matcha</span>
-                        </p>
+                        <h3 class="text-2xl font-bold mb-2 text-[#7A6C5B]">Hiroshi Kubota – Kubota Apple & Tea Farm</h3>
+                        <p class="mb-4">Born into a family of tea farmers with over 100 years of tradition, Hiroshi Kubota produces premium matcha. After retiring at 60, he converted part of his tea fields into apple orchards. Using only organic compost and grinding leaves carefully with traditional stone mills, he creates matcha with a rich aroma and naturally sweet, deep flavor—perfect for sipping or adding to desserts and baked goods.</p>
                     </div>
                     <div class="md:col-span-2 md:order-1">
                         <img src="images/kubotasan.jpg" alt="Hiroshi Kubota" class="rounded-lg object-cover w-full h-80">
@@ -120,22 +112,16 @@
         </section>
         
         <section class="max-w-4xl mx-auto text-center mt-20 p-8 rounded-xl shadow-lg border border-gray-200">
-            <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">Matcha Stone Grinding</h3>
+            <h3 class="text-2xl font-bold mb-4 text-[#7A6C5B]">Authentic Stone-Ground Matcha</h3>
             <p class="text-lg leading-relaxed text-left mb-4">
-                Stone grinding is a traditional method of pulverizing the raw material for matcha, "tencha," using a stone mill just before shipping. The stone mill consists of an upper and lower stone with intricate grooves. By placing tencha in the upper stone and turning the handle, the tea leaves are slowly ground.
-            </p>
-            <p class="text-lg leading-relaxed text-left mb-4">
-                While mixers and other machines can produce matcha quickly with their high-speed rotation, they tend to create uneven particles, and the friction heat can damage the aroma and flavor.
-            </p>
-            <p class="text-lg leading-relaxed text-left mb-4">
-                In contrast, the time-consuming and laborious stone grinding process generates little friction heat, resulting in a uniform and highly aromatic matcha.
+                Stone grinding is a traditional method that slowly turns tencha leaves into fine powder just before shipment. Unlike machines that produce heat and uneven particles, stone grinding preserves the aroma and creates a smooth, high-quality matcha.
             </p>
         </section>
 
         <section>
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">Exploring the Flavor Profiles</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">Types of Yamato Tea</h2>
             <p class="max-w-3xl mx-auto text-center mb-12">
-                Yamato Tea reveals diverse characteristics depending on the production method.<br>Let's compare their unique profiles with a bar chart.
+                Yamato tea's taste varies by its production method. Let's compare the characteristics of the most prominent teas with a bar graph.
             </p>
             <div class="chart-container">
                 <canvas id="teaTypesChart"></canvas>
@@ -143,56 +129,55 @@
             <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-2 gap-8 mt-12 max-w-5xl mx-auto">
                 <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
                     <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">Sencha</h3>
-                    <p class="text-gray-700">Known for its refreshing aroma, balanced umami, and moderate bitterness. It's widely enjoyed as a daily tea.</p>
+                    <p class="text-gray-700">Refreshing aroma, well-balanced umami and mild astringency—perfect for everyday enjoyment.</p>
                 </div>
                 <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
                     <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">Kabusecha</h3>
-                    <p class="text-gray-700">The tea leaves are covered with a black cheesecloth before harvest, which suppresses astringency and brings out a mellow umami.</p>
+                    <p class="text-gray-700">Leaves shaded before harvest to reduce bitterness and enhance smooth sweetness.</p>
                 </div>
                 <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
-                    <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">Fukamushicha (Deep-steamed Tea)</h3>
-                    <p class="text-gray-700">Steamed for longer than usual, it has a rich flavor and a deep green color. It is characterized by low astringency and a smooth, easy-to-drink profile.</p>
+                    <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">Fukamushi-cha</h3>
+                    <p class="text-gray-700">Deep-steamed tea with rich flavor, vibrant green color, and gentle astringency.</p>
                 </div>
                 <div class="bg-white/50 rounded-xl shadow-lg p-6 border border-gray-200">
                     <h3 class="text-xl font-bold mb-2 text-[#7A6C5B]">Matcha</h3>
-                    <p class="text-gray-700">A fine powder of green tea leaves carefully ground with a stone mill. It's popular not only for tea ceremonies but also for a wide range of uses, including sweets and cooking.</p>
+                    <p class="text-gray-700">Carefully stone-ground tencha, ideal for tea ceremonies, desserts, and cooking.</p>
                 </div>
             </div>
         </section>
         
-        <!-- Newly added product package section -->
+        <!-- Product package section -->
         <section class="max-w-5xl mx-auto mt-20">
-            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">Product Lineup</h2>
+            <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">Our Product Line</h2>
 
-            <!-- Japanese Edition -->
+            <!-- Japanese-Style Edition -->
             <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
                 <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">Japanese Edition</h3>
                 <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
                     <div class="text-center">
-                        <img src="images/kabuse_50g.jpg" alt="Japanese Kabusecha 50g Package" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
+                        <img src="images/kabuse_50g.jpg" alt="Kabusecha 50g package" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
                         <p class="mt-2 font-bold text-[#4C4B46]">Kabusecha 50g</p>
                     </div>
                     <div class="text-center">
-                        <img src="images/fukamushi_50g.jpg" alt="Japanese Fukamushicha 50g Package" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                        <p class="mt-2 font-bold text-[#4C4B46]">Fukamushicha 50g</p>
+                        <img src="images/fukamushi_50g.jpg" alt="Fukamushi-cha 50g package" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
+                        <p class="mt-2 font-bold text-[#4C4B46]">Fukamushi-cha 50g</p>
                     </div>
                     <div class="md:col-span-2 text-center mt-4">
-                        <img src="images/fukamushi_50g_100g.jpg" alt="Japanese Fukamushicha 50g and 100g Packages" class="rounded-lg shadow-lg max-w-[300px] mx-auto">
-                        <p class="mt-2 font-bold text-[#4C4B46]">Fukamushicha 100g & 50g</p>
+                        <img src="images/fukamushi_50g_100g.jpg" alt="Fukamushi-cha 50g and 100g packages" class="rounded-lg shadow-lg max-w-[300px] mx-auto">
+                        <p class="mt-2 font-bold text-[#4C4B46]">Fukamushi-cha 100g & 50g</p>
                     </div>
                 </div>
             </div>
 
-            <!-- International Edition -->
+            <!-- Overseas Edition -->
             <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
                 <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">International Edition</h3>
                 <div class="flex justify-center flex-wrap gap-8">
                     <div class="text-center w-full md:w-1/2">
-                        <img src="images/greentea_eng.jpg" alt="International Green Tea 50g Package Front" class="rounded-lg shadow-lg w-full h-auto object-contain mx-auto max-w-[500px]">
-                        <p class="mt-2 font-bold text-[#4C4B46]">English Labeling (Customizable)</p>
+                        <img src="images/greentea_eng.jpg" alt="International green tea 50g package" class="rounded-lg shadow-lg w-full h-auto object-contain mx-auto max-w-[500px]">
+                        <p class="mt-2 font-bold text-[#4C4B46]">Green Tea 50g (customizable English packaging)</p>
                     </div>
                 </div>
-                
             </div>
 
             <!-- Matcha -->
@@ -200,7 +185,7 @@
                 <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">Matcha</h3>
                 <div class="flex justify-center">
                     <div class="text-center">
-                        <img src="images/matcha_60g.jpg" alt="Matcha 60g Package" class="rounded-lg shadow-lg max-w-[300px] w-full">
+                        <img src="images/matcha_60g.jpg" alt="Matcha 60g package" class="rounded-lg shadow-lg max-w-[300px] w-full">
                         <p class="mt-2 font-bold text-[#4C4B46]">Matcha 60g</p>
                     </div>
                 </div>
@@ -208,14 +193,13 @@
         </section>
 
         <section class="max-w-4xl mx-auto text-center text-sm text-gray-500 mt-20">
-            <h2 class="text-xl font-bold mb-4 text-[#7A6C5B]">Sources</h2>
+            <h2 class="text-xl font-bold mb-4 text-[#7A6C5B]">References</h2>
             <ul class="space-y-2">
-                <li><a href="https://www.maff.go.jp/j/keikaku/syokubunka/traditional-foods/index.html" target="_blank" class="hover:underline">Ministry of Agriculture, Forestry and Fisheries</a></li>
-                <li><a href="https://www.asahi.com/travel/kiko/TKY201103280145.html" target="_blank" class="hover:underline">Asahi Shimbun</a></li>
+                <li><a href="https://www.maff.go.jp/j/keikaku/syokubunka/traditional-foods/index.html" target="_blank" class="hover:underline">Ministry of Agriculture, Forestry and Fisheries (Japan)</a></li>
+                <li><a href="https://www.asahi.com/travel/kiko/TKY201103280145.html" target="_blank" class="hover:underline">Asahi Shimbun (Japan)</a></li>
                 <li><a href="https://cdn.jalan.jp/jalan/img/4/kuchikomi/5284/KL/7981f_0005284459_1.webp" target="_blank" class="hover:underline">Jalan.net</a></li>
-                <li><a href="https://image.rakuten.co.jp/giftnomura/cabinet/yamatotya/imgrc0073707403.jpg" target="_blank" class="hover:underline">Rakuten Ichiba Gift no Mura</a></li>
-                <li><a href="https://cdn.activityboard.jp/KR00844763/pictures/l000032401/P000188E48.jpg" target="_blank" class="hover:underline">Activity Japan</a></li>
-                <li><a href="https://onoen.jp/column/column_71.html" target="_blank" class="hover:underline">Onoen</a></li>
+                <li><a href="https://image.rakuten.co.jp/giftnomura/cabinet/yamatotya/imgrc0073707403.jpg" target="_blank" class="hover:underline">Rakuten Gift Village</a></li>
+                <li><a href="https://onoen.jp/column/column_71.html" target="_blank" class="hover:underline">Onoen Tea Farm</a></li>
                 <li><a href="https://www.the-tea-crane.com/jpn/2020/03/23/matcha-manufacturing/?srsltid=AfmBOopM1kxCBnqL7O-LnJkCuPNyR97D2b8ZKlG-VqsvURpAD56IK2_C" target="_blank" class="hover:underline">The Tea Crane</a></li>
             </ul>
         </section>
@@ -232,7 +216,7 @@
             const teaChart = new Chart(ctx, {
                 type: 'bar',
                 data: {
-                    labels: ['Sencha', 'Kabusecha', 'Fukamushicha', 'Matcha'],
+                    labels: ['Sencha', 'Kabusecha', 'Fukamushi-cha', 'Matcha'],
                     datasets: [{
                         label: 'Umami',
                         data: [3, 4, 4, 5],
@@ -256,7 +240,7 @@
                                 color: '#4C4B46',
                                 font: {
                                     size: 14,
-                                    family: "'Noto Sans JP', sans-serif"
+                                    family: "'Inter', sans-serif"
                                 }
                             },
                             grid: {
@@ -280,7 +264,7 @@
                             labels: {
                                 font: {
                                     size: 14,
-                                    family: "'Noto Sans JP', sans-serif"
+                                    family: "'Inter', sans-serif"
                                 }
                             }
                         },

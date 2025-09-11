@@ -22,34 +22,29 @@
             position: relative;
             width: 100%;
             max-width: 800px;
+            height: 400px;
             margin: auto;
         }
-
-        /* Modal styling */
-        .modal {
-            display: none; /* Hidden by default */
-            position: fixed; /* Stay in place */
-            z-index: 1000; /* Sit on top */
-            padding-top: 100px; /* Location of the box */
+        #imageModal {
+            display: none; 
+            position: fixed; 
+            z-index: 1000;
             left: 0;
             top: 0;
-            width: 100%; /* Full width */
-            height: 100%; /* Full height */
-            overflow: auto; /* Enable scroll if needed */
-            background-color: rgb(0,0,0); /* Fallback color */
-            background-color: rgba(0,0,0,0.9); /* Black w/ opacity */
+            width: 100%;
+            height: 100%;
+            overflow: auto;
+            background-color: rgb(0,0,0);
+            background-color: rgba(0,0,0,0.9);
             justify-content: center;
             align-items: center;
         }
-
-        .modal-content {
+        #expandedImg {
             margin: auto;
             display: block;
-            width: 80%;
-            max-width: 700px;
-            border-radius: 0.5rem;
+            max-width: 90%;
+            max-height: 90%;
         }
-
         .close {
             position: absolute;
             top: 15px;
@@ -59,7 +54,6 @@
             font-weight: bold;
             transition: 0.3s;
         }
-
         .close:hover,
         .close:focus {
             color: #bbb;
@@ -68,331 +62,199 @@
         }
     </style>
 </head>
-<body class="bg-[#F8F5EE] text-[#4C4B46]">
+<body class="p-6 md:p-12">
+    <header class="text-center mb-12">
+        <h1 class="text-3xl md:text-5xl font-bold mb-2">Yamato Tea | Nara</h1>
+        <div class="flex justify-center space-x-4 mt-4">
+            <button onclick="switchLanguage('ja')" class="lang-btn bg-[#B2A48C] text-white px-4 py-2 rounded-lg hover:bg-[#A0937C]">日本語</button>
+            <button onclick="switchLanguage('en')" class="lang-btn bg-[#B2A48C] text-white px-4 py-2 rounded-lg hover:bg-[#A0937C]">English</button>
+            <button onclick="switchLanguage('th')" class="lang-btn bg-[#B2A48C] text-white px-4 py-2 rounded-lg hover:bg-[#A0937C]">ไทย</button>
+        </div>
+    </header>
 
-    <!-- Language Switcher -->
-    <div class="fixed top-4 right-4 z-50">
-        <select id="language-switcher" onchange="switchLanguage(this.value)" class="p-2 rounded-md bg-white shadow-md border border-gray-200">
-            <option value="ja">日本語</option>
-            <option value="en">English</option>
-            <option value="th">ภาษาไทย</option>
-        </select>
-    </div>
-
-    <!-- Japanese Content -->
-    <div id="content-ja" class="language-content">
-        <header class="text-center py-20 bg-center bg-cover" style="background-image: url('images/nara-field.jpg');">
-            <div class="bg-black/40 p-10 rounded-xl max-w-2xl mx-auto">
-                <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">大和茶<br><span class="text-3xl md:text-4xl">奈良の自然と歴史が育む、伝統の一服。</span></h1>
-            </div>
-        </header>
-
-        <main class="max-w-5xl mx-auto px-4 py-16">
-            <!-- 大和茶とは -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">大和茶とは</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <p class="text-lg leading-relaxed">奈良県の大和高原を中心に栽培される伝統的な大和茶は、香りが高く、渋みがありながらも、すっきりと爽やかな味わいが特徴です。<br>その一杯には奈良の豊かな自然と悠久の歴史が溶け込んでいます。</p>
-                </div>
-            </section>
-
-            <!-- 歴史と風土 -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">歴史と風土</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">大和茶の起源</h3>
-                    <p class="text-lg leading-relaxed mb-6">大和茶の歴史は、平安時代初頭の806年に遡ります。弘法大師空海が唐から茶の種子を持ち帰り、佛隆寺（現宇陀市）に播種したのがその始まりと伝えられています。</p>
-                    <div class="flex justify-center mb-6">
-                        <img src="images/kukai_tea.jpg" alt="空海と茶の伝来" class="rounded-lg shadow-lg max-w-sm w-full">
-                    </div>
-                    <h3 class="text-xl font-bold text-[#7A6C5B] mb-2">空海と茶の伝来</h3>
+    <main id="content-container">
+        
+        <div id="ja-content" class="lang-content">
+            <section class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">大和茶とは</h2>
+                    <p class="text-base md:text-lg leading-relaxed">奈良県の大和高原を中心に栽培される伝統的な大和茶は、香りが高く、渋みがありながらも、すっきりと爽やかな味わいが特徴です。その一杯には奈良の豊かな自然と悠久の歴史が溶け込んでいます。</p>
                 </div>
 
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mt-8">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">産地紹介（奈良市田原地区）</h3>
-                    <p class="text-lg leading-relaxed mb-6">主産地である大和高原は、標高200～500mの冷涼な気候が特徴です。昼夜の大きな寒暖差が茶葉の成長をじっくりと促し、豊かな香りと深い味わいを生み出す理想的な環境です。</p>
-                    <div class="flex justify-center mb-6">
-                        <img id="myImgJa" src="images/tawara_field.jpg" alt="奈良大和高原の茶畑" class="rounded-lg shadow-lg w-full h-auto object-contain max-w-[800px] cursor-pointer" data-enlarge>
-                    </div>
-                    <h3 class="text-xl font-bold text-[#7A6C5B] mb-2">奈良大和高原の茶畑</h3>
-                    <p class="text-lg leading-relaxed mt-4">特に昔から大和茶の産地として知られてきた田原地区は、この恵まれた環境が凝縮されています。</p>
-                </div>
-            </section>
+                <hr class="border-[#C4B7A6]">
 
-            <!-- 生産者の顔 -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">生産者の顔</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <p class="text-lg leading-relaxed text-center">大和茶の伝統を未来へ繋ぐ、田原地区の熱心な生産者たちをご紹介します。</p>
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">歴史と風土</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">大和茶の起源</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">大和茶の歴史は、平安時代初頭の806年に遡ります。弘法大師空海が唐から茶の種子を持ち帰り、佛隆寺（現の宇陀市）に播種したのがその始まりと伝えられています。</p>
                 </div>
-                <!-- 福井佐和さん -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <div class="md:flex md:space-x-8 items-center">
-                        <div class="md:w-1/3 flex justify-center">
-                            <img src="images/fukui.jpg" alt="福井佐和さん" class="rounded-full shadow-lg max-w-[200px] w-full">
-                        </div>
-                        <div class="md:w-2/3 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-[#7A6C5B] mb-2">福井佐和さん / 田原ナチュラル・ファーム</h3>
-                            <p class="text-lg leading-relaxed mb-4">百貨店勤務を経て、自然と関わる仕事がしたいと農業の道へ。農薬や化学肥料を一切使わず、茶と野菜を育てる佐和さん。「人もお茶も野菜も虫も みんな結（ゆい）でつながる」という信条のもと、自然との調和を大切にしたお茶作りを実践しています。爽やかな甘みとすっきりとした渋みが特徴です。</p>
-                            <p class="text-sm font-semibold text-[#5E8C6A]">資源循環型農業 / 農薬・化学肥料・除草剤 不使用</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 窪田リンゴ園 -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <div class="md:flex md:space-x-8 items-center">
-                        <div class="md:w-1/3 flex justify-center">
-                            <img src="images/kubota.jpg" alt="窪田 弘さん" class="rounded-full shadow-lg max-w-[200px] w-full">
-                        </div>
-                        <div class="md:w-2/3 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-[#7A6C5B] mb-2">有機抹茶を作る窪田リンゴ園の農家</h3>
-                            <p class="text-lg leading-relaxed mb-4">100年以上続くお茶農家が作った抹茶。<br>窪田さんは60歳で定年を迎えた後、茶畑の一部をりんご園に転換しました。当園のある田原地区は、朝晩の寒暖差と豊かな水源に恵まれ、お茶作りに最適と言われています。農薬を使わず、有機堆肥だけで育てた茶葉を丁寧に石臼で挽くことで、香り高く、深みと甘みを併せ持つ抹茶に仕上げました。そのまま飲んで楽しめるのはもちろん、スイーツやパンづくりの材料としてもおすすめです。</p>
-                            <p class="text-sm font-semibold text-[#5E8C6A]">有機堆肥 / 抹茶</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 石臼挽き -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">抹茶の石臼挽き</h3>
-                    <div class="flex justify-center mb-6">
-                        <img src="images/stone_mill.jpg" alt="抹茶の石臼挽き" class="rounded-lg shadow-lg max-w-sm w-full" data-enlarge>
-                    </div>
-                    <p class="text-lg leading-relaxed">石臼挽きとは、抹茶の原料「碾茶（てんちゃ）」を出荷直前に石臼で粉末にする伝統的な製法です。石臼は精緻な目が刻まれた上臼と下臼で構成され、上臼に碾茶を入れて挽木（まわし手）を回すと、茶葉がゆっくりと粉砕されます。</p>
-                    <p class="text-lg leading-relaxed mt-4">ミキサーやミルなど機械の高速回転を利用すれば短時間で抹茶が作れますが、粒が不揃いになりやすく、摩擦熱で香りや風味が損なわれます。</p>
-                    <p class="text-lg leading-relaxed mt-4">一方、時間も手間もかかる石臼挽きは摩擦熱が少なく、均一で香り豊かな抹茶が得られます。</p>
-                </div>
-            </section>
 
-            <!-- 風味の探求 -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">風味の探求</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <p class="text-lg leading-relaxed text-center mb-8">大和茶は、製法の違いによって多様な表情を見せます。<br>それぞれの個性を縦棒グラフで比較してみましょう。</p>
-                    <div class="chart-container">
-                        <canvas id="flavorChartJa"></canvas>
-                    </div>
-                </div>
-            </section>
+                <hr class="border-[#C4B7A6]">
 
-            <!-- 商品ラインナップ -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">商品ラインナップ</h2>
-                <!-- 日本版 -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">日本版</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
-                        <div class="text-center">
-                            <img src="images/kabuse_50g.jpg" alt="日本版 かぶせ茶 50g パッケージ" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">かぶせ茶 50g</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/fukamushi_50g.jpg" alt="日本版 深蒸し茶 50g パッケージ" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">深蒸し茶 50g</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/kabuse_leaf.jpg" alt="かぶせ茶の茶葉サンプル" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">かぶせ茶の茶葉サンプル</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/fukamushi_leaf.jpg" alt="深蒸し茶の茶葉サンプル" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">深蒸し茶の茶葉サンプル</p>
-                        </div>
-                        <div class="md:col-span-2 text-center mt-4">
-                            <img src="images/fukamushi_50g_100g.jpg" alt="日本版 深蒸し茶 100g と 50g パッケージの並び写真" class="rounded-lg shadow-lg max-w-[300px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">深蒸し茶 100g & 50g</p>
-                        </div>
-                    </div>
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">産地紹介（奈良市田原地区）</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">田原地区の気候と土壌</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">主産地である大和高原は、標高200～500mの冷涼な気候が特徴です。昼夜の大きな寒暖差が茶葉の成長をじっくりと促し、豊かな香りと深い味わいを生み出す理想的な環境です。</p>
+                    <p class="text-base md:text-lg leading-relaxed">特に昔から大和茶の産地として知られてきた田原地区は、この恵まれた環境が凝縮されています。</p>
                 </div>
-                <!-- 海外版 -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">海外版</h3>
-                    <div class="flex justify-center flex-wrap gap-8">
-                        <div class="text-center w-full md:w-1/2">
-                            <img src="images/greentea_eng.jpg" alt="海外版 緑茶 50g パッケージ表面と裏面" class="rounded-lg shadow-lg w-full h-auto object-contain mx-auto max-w-[800px] cursor-pointer" data-enlarge>
-                            <p class="mt-2 font-bold text-[#4C4B46]">英語表記 （カスタマイズ可能）</p>
-                        </div>
-                    </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">生産者の顔</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">大和茶の伝統を未来へ繋ぐ、田原地区の熱心な生産者たちをご紹介します。</p>
+
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">田原ナチュラル・ファーム</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-2"><strong>福井 佐和さん</strong></p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">百貨店勤務を経て、自然と関わる仕事がしたいと農業の道へ。農薬や化学肥料を一切使わず、茶と野菜を育てる佐和さん。「人もお茶も野菜も虫も みんな結（ゆい）でつながる」という信条のもと、自然との調和を大切にしたお茶作りを実践しています。爽やかな甘みとすっきりとした渋みが特徴です。</p>
+                    <p class="text-sm text-gray-600">資源循環型農業 / 農薬・化学肥料・除草剤 不使用</p>
+
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">有機抹茶を作る窪田リンゴ園の農家</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-2"><strong>窪田 弘さん</strong></p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">100年以上続くお茶農家が作った抹茶。窪田さんは60歳で定年を迎えた後、茶畑の一部をりんご園に転換しました。当園のある田原地区は、朝晩の寒暖差と豊かな水源に恵まれ、お茶作りに最適と言われています。農薬を使わず、有機堆肥だけで育てた茶葉を丁寧に石臼で挽くことで、香り高く、深みと甘みを併せ持つ抹茶に仕上げました。そのまま飲んで楽しめるのはもちろん、スイーツやパンづくりの材料としてもおすすめです。</p>
+                    <p class="text-sm text-gray-600">有機堆肥 / 抹茶</p>
                 </div>
-                <!-- 抹茶 -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">抹茶</h3>
-                    <div class="flex justify-center">
-                        <div class="text-center">
-                            <img src="images/matcha_60g.jpg" alt="抹茶 60g パッケージ" class="rounded-lg shadow-lg max-w-[250px] w-full">
-                            <p class="mt-2 font-bold text-[#4C4B46]">抹茶 60g</p>
-                        </div>
-                    </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">抹茶の石臼挽き</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">石臼挽きとは、抹茶の原料「碾茶（てんちゃ）」を出荷直前に石臼で粉末にする伝統的な製法です。石臼は精緻な目が刻まれた上臼と下臼で構成され、上臼に碾茶を入れて挽木（まわし手）を回すと、茶葉がゆっくりと粉砕されます。</p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">ミキサーやミルなど機械の高速回転を利用すれば短時間で抹茶が作れますが、粒が不揃いになりやすく、摩擦熱で香りや風味が損なわれます。</p>
+                    <p class="text-base md:text-lg leading-relaxed">一方、時間も手間もかかる石臼挽きは摩擦熱が少なく、均一で香り豊かな抹茶が得られます。</p>
                 </div>
-            </section>
-            
-            <!-- 出典 -->
-            <section>
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#5E8C6A]">出典</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <ul class="list-none text-lg leading-loose">
-                        <li>農林水産省</li>
-                        <li>朝日新聞</li>
-                        <li>じゃらんnet</li>
-                        <li>楽天市場 ギフトの村</li>
-                        <li>小野園</li>
-                        <li>The Tea Crane</li>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">風味の探求</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">大和茶は、製法の違いによって多様な表情を見せます。それぞれの個性を縦棒グラフで比較してみましょう。</p>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li><strong>煎茶</strong>: 爽やかな香りと、バランスの取れた旨み、適度な苦みが特徴。日常のお茶として幅広く楽しまれています。</li>
+                        <li><strong>かぶせ茶</strong>: 収穫前に茶葉を黒い寒冷紗などで覆うことによって、渋みを抑え、まろやかな旨みを引き出しています。</li>
+                        <li><strong>深蒸し茶</strong>: 通常より長く蒸すことで、濃厚な味わいと深い緑色の水色に。渋みが少なく、まろやかで飲みやすいのが特徴です。</li>
+                        <li><strong>抹茶</strong>: 碾茶を石臼などで丁寧に挽いたきめ細かな粉末の緑茶。茶道はもちろん、スイーツや料理など幅広い用途で人気です。</li>
+                    </ul>
+                </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">商品ラインナップ</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">日本版</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>かぶせ茶 50g</li>
+                        <li>深蒸し茶 50g</li>
+                        <li>かぶせ茶の茶葉サンプル</li>
+                        <li>深蒸し茶の茶葉サンプル</li>
+                        <li>深蒸し茶 100g & 50g</li>
+                    </ul>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">海外版</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>英語表記 （カスタマイズ可能）</li>
+                    </ul>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">抹茶</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>抹茶 60g</li>
                     </ul>
                 </div>
             </section>
-        </main>
-    </div>
+        </div>
 
-    <!-- English Content -->
-    <div id="content-en" class="language-content hidden">
-        <header class="text-center py-20 bg-center bg-cover" style="background-image: url('images/nara-field.jpg');">
-            <div class="bg-black/40 p-10 rounded-xl max-w-2xl mx-auto">
-                <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">A sip of tradition,<br><span class="text-3xl md:text-4xl">enriched by the nature and history of Nara.</span></h1>
-            </div>
-        </header>
-
-        <main class="max-w-5xl mx-auto px-4 py-16">
-            <!-- The Story of Yamato Tea -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">The Story of Yamato Tea</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <p class="text-lg leading-relaxed">Cultivated in the Yamato Highlands of Nara, traditional Yamato Tea is distinguished by its elegant aroma, a touch of refined bitterness, and a refreshing, clean finish. Each cup is infused with the richness of Nara’s nature and the depth of its timeless history.</p>
-                </div>
-            </section>
-
-            <!-- History and Heritage of the Land -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">History and Heritage of the Land</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">The Origin of Yamato Tea</h3>
-                    <p class="text-lg leading-relaxed mb-6">Yamato Tea’s history dates back over 1,200 years to the early Heian period, when the revered monk Kobo Daishi Kukai brought tea seeds from Tang China and planted them at Butsuryuji Temple (present-day in Uda City).</p>
-                    <div class="flex justify-center mb-6">
-                        <img src="images/kukai_tea.jpg" alt="Kukai and the Introduction of Tea" class="rounded-lg shadow-lg max-w-sm w-full">
-                    </div>
-                    <h3 class="text-xl font-bold text-[#7A6C5B] mb-2">Kukai and the Introduction of Tea</h3>
+        <div id="en-content" class="lang-content hidden">
+            <section class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">A sip of tradition, enriched by the nature and history of Nara.</h2>
                 </div>
 
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mt-8">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">Tea Producing Area (Tawara Region, Nara City)</h3>
-                    <p class="text-lg leading-relaxed mb-6">The main production area, the Yamato Plateau, is characterized by a cool climate at an altitude of 200–500 meters. The large temperature difference between day and night allows tea leaves to grow slowly, creating an ideal environment for producing rich aroma and deep, refined flavors.</p>
-                    <div class="flex justify-center mb-6">
-                        <img id="myImgEn" src="images/tawara_field.jpg" alt="Tea Fields of the Yamato Highlands, Nara" class="rounded-lg shadow-lg w-full h-auto object-contain max-w-[800px] cursor-pointer" data-enlarge>
-                    </div>
-                    <h3 class="text-xl font-bold text-[#7A6C5B] mb-2">Tea Fields of the Yamato Highlands, Nara</h3>
-                    <p class="text-lg leading-relaxed mt-4">In particular, the Tawara region, long known for producing Yamato Tea, brings together the blessings of this rich environment.</p>
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">The Story of Yamato Tea</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">Cultivated in the Yamato Highlands of Nara, traditional Yamato Tea is distinguished by its elegant aroma, a touch of refined bitterness, and a refreshing, clean finish. Each cup is infused with the richness of Nara’s nature and the depth of its timeless history.</p>
                 </div>
-            </section>
 
-            <!-- Meet the Tea Producers -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">Meet the Tea Producers</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <p class="text-lg leading-relaxed text-center">Here we introduce the passionate farmers of the Tawara area, who continue to preserve the tradition of Yamato Tea.</p>
-                </div>
-                <!-- Sawa Fukui -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <div class="md:flex md:space-x-8 items-center">
-                        <div class="md:w-1/3 flex justify-center">
-                            <img src="images/fukui.jpg" alt="Sawa Fukui" class="rounded-full shadow-lg max-w-[200px] w-full">
-                        </div>
-                        <div class="md:w-2/3 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-[#7A6C5B] mb-2">Sawa Fukui / Tawara Natural Farm</h3>
-                            <p class="text-lg leading-relaxed mb-4">After working in a department store, Sawa Fukui chose a path in agriculture to work closely with nature. She grows tea and vegetables without using any pesticides or chemical fertilizers. Guided by her belief in 結 (Yui), the connection that links people, tea, vegetables, and insects, she runs her farm in harmony with nature. Her tea is characterized by a delicate sweetness and smooth astringency.</p>
-                            <p class="text-sm font-semibold text-[#5E8C6A]">Resource-circulating agriculture / No pesticides, chemical fertilizers, or herbicides</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- The Kubota Apple Orchard farmer -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <div class="md:flex md:space-x-8 items-center">
-                        <div class="md:w-1/3 flex justify-center">
-                            <img src="images/kubota.jpg" alt="Hiroshi Kubota" class="rounded-full shadow-lg max-w-[200px] w-full">
-                        </div>
-                        <div class="md:w-2/3 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-[#7A6C5B] mb-2">The Kubota Apple Orchard farmer who produces chemical-free matcha</h3>
-                            <p class="text-lg leading-relaxed mb-4">Matcha produced by a farmer born and raised in a tea-growing family with over 100 years of history. After retiring at 60, Hiroshi Kubota converted part of his tea fields into an apple orchard. The Tawara region, where his farm is located, is ideal for tea cultivation due to the large temperature differences between day and night and abundant water sources. Using only organic compost, he carefully grinds the tea leaves with a stone mill, producing matcha with a rich aroma and deep sweetness. His matcha can be enjoyed as a drink or used widely in sweets and baking.</p>
-                            <p class="text-sm font-semibold text-[#5E8C6A]">Organic compost / Matcha</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- Stone-milled matcha -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">Stone-milled matcha</h3>
-                    <div class="flex justify-center mb-6">
-                        <img src="images/stone_mill.jpg" alt="Stone-milled matcha" class="rounded-lg shadow-lg max-w-sm w-full" data-enlarge>
-                    </div>
-                    <p class="text-lg leading-relaxed">Stone milling is the traditional method of grinding tencha, the raw material for matcha, into powder just before shipment. A stone mill consists of an upper and lower stone with finely carved grooves. Tencha is placed in the upper stone, and by turning the handle (mawashi-te), the leaves are slowly ground.</p>
-                    <p class="text-lg leading-relaxed mt-4">Machines like blenders or mills can produce matcha in a short time at high speed, but the particles tend to be uneven, and friction heat can damage the aroma and flavor.</p>
-                    <p class="text-lg leading-relaxed mt-4">In contrast, stone milling, though time-consuming and labor-intensive, generates very little friction heat, resulting in uniformly fine and highly aromatic matcha.</p>
-                </div>
-            </section>
+                <hr class="border-[#C4B7A6]">
 
-            <!-- Exploring the Flavors -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">Exploring the Flavors</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <p class="text-lg leading-relaxed text-center mb-8">Yamato Tea shows a variety of characteristics depending on how it is processed. Let’s compare the unique qualities of each type using a vertical bar chart.</p>
-                    <div class="chart-container">
-                        <canvas id="flavorChartEn"></canvas>
-                    </div>
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">History and Heritage of the Land</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">The Origin of Yamato Tea</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">The history of Yamato Tea dates back about 1,200 years to the early Heian period, when the Buddhist monk Kōbō Daishi Kūkai brought tea seeds from Tang China and planted them at Butsuryuji Temple in present-day Uda City.</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">Kukai and the Introduction of Tea</h3>
                 </div>
-            </section>
 
-            <!-- Product Lineup -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">Product Lineup</h2>
-                <!-- Japan Edition -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">Japan Edition</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
-                        <div class="text-center">
-                            <img src="images/kabuse_50g.jpg" alt="Japan Edition Kabusecha 50g Package" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">Kabusecha 50g</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/fukamushi_50g.jpg" alt="Japan Edition Fukamushicha 50g Package" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">Fukamushicha 50g</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/kabuse_leaf.jpg" alt="Kabusecha Tea Leaf Sample" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">Kabusecha Tea Leaf Sample</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/fukamushi_leaf.jpg" alt="Fukamushicha Tea Leaf Sample" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">Fukamushicha Tea Leaf Sample</p>
-                        </div>
-                        <div class="md:col-span-2 text-center mt-4">
-                            <img src="images/fukamushi_50g_100g.jpg" alt="Japan Edition Fukamushicha 100g & 50g" class="rounded-lg shadow-lg max-w-[300px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">Fukamushicha 100g & 50g</p>
-                        </div>
-                    </div>
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">Tea Producing Area (Tawara Region, Nara City)</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">Climate and Soil of the Tawara Region</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">The main production area, the Yamato Plateau, is characterized by a cool climate at an altitude of 200–500 meters. The large temperature difference between day and night allows tea leaves to grow slowly, creating an ideal environment for producing rich aroma and deep, refined flavors.</p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">In particular, the Tawara region, long known for producing Yamato Tea, brings together the blessings of this rich environment.</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">Tea Fields of the Yamato Highlands, Nara</h3>
                 </div>
-                <!-- Overseas Edition -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">Overseas Edition</h3>
-                    <div class="flex justify-center flex-wrap gap-8">
-                        <div class="text-center w-full md:w-1/2">
-                            <img src="images/greentea_eng.jpg" alt="Overseas Edition Green Tea 50g Package (Front & Back)" class="rounded-lg shadow-lg w-full h-auto object-contain mx-auto max-w-[800px] cursor-pointer" data-enlarge>
-                            <p class="mt-2 font-bold text-[#4C4B46]">English labeling (Customizable)</p>
-                        </div>
-                    </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">Meet the Tea Producers</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">Here we introduce the passionate farmers of the Tawara area, who continue to preserve the tradition of Yamato Tea.</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">Sawa Fukui / Tawara Natural Farm</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-2"><strong>Sawa Fukui</strong></p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">After working in a department store, Sawa Fukui chose a path in agriculture to work closely with nature. She grows tea and vegetables without using any pesticides or chemical fertilizers. Guided by her belief in 結 (Yui), the connection that links people, tea, vegetables, and insects, she runs her farm in harmony with nature. Her tea is characterized by a delicate sweetness and smooth astringency.</p>
+                    <p class="text-sm text-gray-600">Resource-circulating agriculture / No pesticides, chemical fertilizers, or herbicides</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">The Kubota Apple Orchard farmer who produces chemical-free matcha</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-2"><strong>Hiroshi Kubota</strong></p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">Matcha produced by a farmer born and raised in a tea-growing family with over 100 years of history.<br>After retiring at 60, Hiroshi Kubota converted part of his tea fields into an apple orchard. The Tawara region, where his farm is located, is ideal for tea cultivation due to the large temperature differences between day and night and abundant water sources. Using only organic compost, he carefully grinds the tea leaves with a stone mill, producing matcha with a rich aroma and deep sweetness. His matcha can be enjoyed as a drink or used widely in sweets and baking.</p>
+                    <p class="text-sm text-gray-600">Organic compost / Matcha</p>
                 </div>
-                <!-- Matcha -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">Matcha</h3>
-                    <div class="flex justify-center">
-                        <div class="text-center">
-                            <img src="images/matcha_60g.jpg" alt="Matcha 60g Package" class="rounded-lg shadow-lg max-w-[250px] w-full">
-                            <p class="mt-2 font-bold text-[#4C4B46]">Matcha 60g</p>
-                        </div>
-                    </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">Stone-milled matcha</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">Stone milling is the traditional method of grinding tencha, the raw material for matcha, into powder just before shipment. A stone mill consists of an upper and lower stone with finely carved grooves. Tencha is placed in the upper stone, and by turning the handle (mawashi-te), the leaves are slowly ground.</p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">Machines like blenders or mills can produce matcha in a short time at high speed, but the particles tend to be uneven, and friction heat can damage the aroma and flavor.</p>
+                    <p class="text-base md:text-lg leading-relaxed">In contrast, stone milling, though time-consuming and labor-intensive, generates very little friction heat, resulting in uniformly fine and highly aromatic matcha.</p>
                 </div>
-            </section>
-            
-            <!-- References -->
-            <section>
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#5E8C6A]">References</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <ul class="list-none text-lg leading-loose">
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">Exploring the Flavors</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">Yamato Tea shows a variety of characteristics depending on how it is processed. Let’s compare the unique qualities of each type using a vertical bar chart.</p>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li><strong>Sencha</strong>: Characterized by its refreshing aroma, well-balanced umami, and a pleasant touch of bitterness, Sencha is widely enjoyed as an everyday tea.</li>
+                        <li><strong>Kabusecha</strong>: By covering the tea plants with black shading cloths just before harvest, the bitterness is softened and a mellow umami flavor is drawn out.</li>
+                        <li><strong>Fukamushicha (Deep-steamed)</strong>: Steamed longer than usual, producing a rich taste and deep green infusion. Less astringent, smooth, and easy to drink.</li>
+                        <li><strong>Matcha</strong>: Finely ground from tencha using a stone mill or similar tools. Popular not only for tea ceremonies but also widely used in sweets, desserts, and cooking.</li>
+                    </ul>
+                </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">Product Lineup</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">Japan Edition</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>Kabusecha 50g</li>
+                        <li>Fukamushicha 50g</li>
+                        <li>Kabusecha Tea Leaf Sample</li>
+                        <li>Fukamushicha Tea Leaf Sample</li>
+                        <li>Fukamushicha 100g & 50g</li>
+                    </ul>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">Overseas Edition</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>Green Tea 50g (customizable English packaging)</li>
+                    </ul>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">Matcha</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>Matcha 60g</li>
+                    </ul>
+                </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">References</h2>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
                         <li>Ministry of Agriculture, Forestry and Fisheries (MAFF)</li>
                         <li>Asahi Shimbun</li>
                         <li>Jalan.net</li>
@@ -402,159 +264,101 @@
                     </ul>
                 </div>
             </section>
-        </main>
-    </div>
+        </div>
 
-    <!-- Thai Content -->
-    <div id="content-th" class="language-content hidden">
-        <header class="text-center py-20 bg-center bg-cover" style="background-image: url('images/nara-field.jpg');">
-            <div class="bg-black/40 p-10 rounded-xl max-w-2xl mx-auto">
-                <h1 class="text-4xl md:text-5xl font-bold text-white leading-tight">รสชาติแห่งธรรมชาติและกาลเวลา<br><span class="text-3xl md:text-4xl">จากนารา สู่ถ้วยชา</span></h1>
-            </div>
-        </header>
-
-        <main class="max-w-5xl mx-auto px-4 py-16">
-            <!-- เรื่องของยามาโตะชา -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">เรื่องของยามาโตะชา</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <p class="text-lg leading-relaxed">ชายามาโตะ ปลูก ณ ท่ามกลางที่ราบสูงยามาโตะ จังหวัดนารา โดดเด่นด้วยกลิ่นหอมละมุน รสฝาดกลมกล่อม และความสดชื่นที่ดื่มแล้วรู้สึกผ่อนคลาย ในทุกถ้วยยังสะท้อนถึงธรรมชาติอันอุดมสมบูรณ์และประวัติศาสตร์อันยาวนานของนารา</p>
-                </div>
-            </section>
-
-            <!-- ประวัติศาสตร์และผืนแผ่นดิน -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">ประวัติศาสตร์และผืนแผ่นดิน</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">จุดกำเนิดของยามาโตะชา</h3>
-                    <p class="text-lg leading-relaxed mb-6">ประวัติของยามาโตะชาย้อนกลับไปประมาณ 1,200 ปี ในช่วงต้นสมัยเฮอัน เมื่อนักบุญผู้ทรงศีล โคโบ ไดชิ คุกายิ นำเมล็ดชาจากราชวงศ์ถังมาปลูกที่วัดบุตสึรยูจิ (ปัจจุบันคือเมืองอุดะ)</p>
-                    <div class="flex justify-center mb-6">
-                        <img src="images/kukai_tea.jpg" alt="โคโบ ไดชิ คุกายิ และการนำชาเข้ามาสู่ญี่ปุ่น" class="rounded-lg shadow-lg max-w-sm w-full">
-                    </div>
-                    <h3 class="text-xl font-bold text-[#7A6C5B] mb-2">โคโบ ไดชิ คุกายิ และการนำชาเข้ามาสู่ญี่ปุ่น</h3>
+        <div id="th-content" class="lang-content hidden">
+            <section class="max-w-4xl mx-auto space-y-8">
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">รสชาติแห่งธรรมชาติและกาลเวลา จากนารา สู่ถ้วยชา</h2>
                 </div>
 
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mt-8">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">แนะนำพื้นที่ผลิตชา (เขตทาวาระ เมืองนารา)</h3>
-                    <p class="text-lg leading-relaxed mb-6">ที่ราบสูงยามาโตะ ซึ่งเป็นพื้นที่หลักในการปลูกชา อยู่สูงจากระดับน้ำทะเล 200-500 เมตรและมีอากาศเย็นสบาย ความแตกต่างของอุณหภูมิระหว่างกลางวันและกลางคืนที่ชัดเจนทำให้ใบชาค่อยๆเจริญเติบโต ซึ่งเหมาะกับการพัฒนาให้เกิดกลิ่นหอมและรสละมุนลึกของชา</p>
-                    <div class="flex justify-center mb-6">
-                        <img id="myImgTh" src="images/tawara_field.jpg" alt="ไร่ชา ณ ที่ราบสูงยามาโตะ จังหวัดนารา" class="rounded-lg shadow-lg w-full h-auto object-contain max-w-[800px] cursor-pointer" data-enlarge>
-                    </div>
-                    <h3 class="text-xl font-bold text-[#7A6C5B] mb-2">ไร่ชา ณ ที่ราบสูงยามาโตะ จังหวัดนารา</h3>
-                    <p class="text-lg leading-relaxed mt-4">โดยเฉพาะพื้นที่แถบทาวาระ ซึ่งเป็นที่รู้จักกันมาในฐานะแหล่งผลิตยามาโตะชา มีสภาพแวดล้อมอันอุดมสมบูรณ์</p>
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">เรื่องของยามาโตะชา</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">ชายามาโตะ ปลูก ณ ท่ามกลางที่ราบสูงยามาโตะ จังหวัดนารา โดดเด่นด้วยกลิ่นหอมละมุน รสฝาดกลมกล่อม และความสดชื่นที่ดื่มแล้วรู้สึกผ่อนคลาย ในทุกถ้วยยังสะท้อนถึงธรรมชาติอันอุดมสมบูรณ์และประวัติศาสตร์อันยาวนานของนารา</p>
                 </div>
-            </section>
 
-            <!-- แนะนำผู้ผลิตชา -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">แนะนำผู้ผลิตชา</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <p class="text-lg leading-relaxed text-center">ขอแนะนำชาวไร่ชาที่ทุ่มเททั้งแรงใจและแรงกายในการสืบสานการปลูกยามาโตะชาในแถบทาวาระ</p>
-                </div>
-                <!-- ซาวะ ฟุกุอิ -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <div class="md:flex md:space-x-8 items-center">
-                        <div class="md:w-1/3 flex justify-center">
-                            <img src="images/fukui.jpg" alt="คุณซาวะ ฟุกุอิ" class="rounded-full shadow-lg max-w-[200px] w-full">
-                        </div>
-                        <div class="md:w-2/3 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-[#7A6C5B] mb-2">ซาวะ ฟุกุอิ / Tawara Natural Farm</h3>
-                            <p class="text-lg leading-relaxed mb-4">หลังจากทำงานในห้างสรรพสินค้า คุณซาวะ ฟุกุอิ หันมาเลือกเส้นทางเกษตรกรรมเพื่อได้ใกล้ชิดธรรมชาติกับธรรมชาติมากขึ้น ภายใต้ความเชื่อที่ว่า “มนุษย์ ชา ผัก และแมลง・ทุกสิ่งล้วนเชื่อมโยงกัน" หรือ 結 (Yui) เธอปลูกชาและผักโดยไม่ใช้สารเคมีหรือปุ๋ยเคมีใดๆ ที่ไร่ชาเธอให้ความสำคัญของความสมดุลของธรรมชาติ ชาของเธอจึงมีลักษณะโดดเด่นด้วยรสหวานละมุนและรสฝาดอันกลมกล่อม</p>
-                            <p class="text-sm font-semibold text-[#5E8C6A]">เกษตรกรรมแบบหมุนเวียนทรัพยากร / ไม่ใช้สารกำจัดศัตรูพืช ปุ๋ยเคมี หรือยากำจัดวัชพืช</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- ชาวไร่แอปเปิ้ลคุโบตะ -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-8">
-                    <div class="md:flex md:space-x-8 items-center">
-                        <div class="md:w-1/3 flex justify-center">
-                            <img src="images/kubota.jpg" alt="คุณฮิโรชิ คุโบตะ" class="rounded-full shadow-lg max-w-[200px] w-full">
-                        </div>
-                        <div class="md:w-2/3 mt-6 md:mt-0">
-                            <h3 class="text-2xl font-bold text-[#7A6C5B] mb-2">ชาวไร่แอปเปิ้ลคุโบตะผู้ผลิตมัทฉะปลอดสาร</h3>
-                            <p class="text-lg leading-relaxed mb-4">มัทฉะที่ผลิตโดยชาวไร่ผู้เกิดและเติบโตในครอบครัวผู้ปลูกชาที่สืบทอดมากว่า 100 ปี หลังจากเกษียณเมื่ออายุ 60 ปี คุณฮิโรชิ คุโบตะ ได้เปลี่ยนพื้นที่บางส่วนของไร่ชามาเป็นสวนแอปเปิ้ล พื้นที่ในแถบทะวาระที่ตั้งฟาร์มมีความเหมาะสมกับการปลูกชา เพราะมีความแตกต่างของอุณหภูมิระหว่างกลางวันและกลางคืนสูง และมีแหล่งน้ำอุดมสมบูรณ์ เขาใช้เพียงปุ๋ยหมักอินทรีย์ในการปลูกชา และบดใบชาอย่างประณีตด้วยหินโม่ ทำให้ได้มัทฉะที่มีทั้งกลิ่นหอมเข้มข้นและรสหวานลึก สามารถดื่มเป็นเครื่องดื่มหรือใช้เป็นส่วนผสมในขนมหรือเบเกอรี่ก็ได้</p>
-                            <p class="text-sm font-semibold text-[#5E8C6A]">ปุ๋ยหมักอินทรีย์ / มัทฉะ</p>
-                        </div>
-                    </div>
-                </div>
-                <!-- 石臼挽き -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-4">การบดมัทฉะด้วยโม่หิน</h3>
-                    <div class="flex justify-center mb-6">
-                        <img src="images/stone_mill.jpg" alt="การบดมัทฉะด้วยโม่หิน" class="rounded-lg shadow-lg max-w-sm w-full" data-enlarge>
-                    </div>
-                    <p class="text-lg leading-relaxed">การใช้โม่หินเป็นวิธีดั้งเดิมในการบดใบชา เท็นฉะซึ่งเป็นวัตถุดิบของมัทฉะจะถูกบดให้เป็นผงก่อนที่จะบรรจุซอง ทั้งหินด้านบนและหินด้านล่างมีร่องซึ่งเป็นเส้นลายที่ถูกสลักไว้อย่างประณีต เมื่อใส่ใบชาเท็นฉะในหินด้านบนและหมุนด้ามจับ ใบชาจะถูกบดอย่างช้าๆ</p>
-                    <p class="text-lg leading-relaxed mt-4">แม้เครื่องจักรอย่างเครื่องปั่นหรือเครื่องบดจะสามารถผลิตมัทฉะได้รวดเร็ว แต่ผงชามักไม่ละเอียดเสมอกัน และความร้อนจากแรงเสียดสีก็ทำลายกลิ่นและรสชาติของชา การบดชาด้วยโม่หินอาจต้องใช้เวลาและมีขั้นตอนที่ยุ่งยากกว่า แต่ความร้อนจากการเสียดสีเกิดขึ้นน้อยกว่า ทำให้ได้มัทฉะที่มีเนื้อเนียนละเอียดเสมอกัน และมีกลิ่นหอมกว่า</p>
-                </div>
-            </section>
+                <hr class="border-[#C4B7A6]">
 
-            <!-- 風味の探求 -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-8 text-[#5E8C6A]">สัมผัสรสชาติที่หลากหลาย</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <p class="text-lg leading-relaxed text-center mb-8">รสชาติและลักษณะเฉพาะของยามาโตะชาที่แตกต่างกันไปตามวิธีการผลิต มาลองเปรียบเทียบเอกลักษณ์ของชาแต่ละอย่างโดยใช้กราฟแท่งกัน</p>
-                    <div class="chart-container">
-                        <canvas id="flavorChartTh"></canvas>
-                    </div>
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">ประวัติศาสตร์และผืนแผ่นดิน</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">จุดกำเนิดของยามาโตะชา</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">ประวัติของยามาโตะชาย้อนกลับไปประมาณ 1,200 ปี ในช่วงต้นสมัยเฮอัน เมื่อนักบุญผู้ทรงศีล โคโบ ไดชิ คุกายิ นำเมล็ดชาจากราชวงศ์ถังมาปลูกที่วัดบุตสึรยูจิ (ปัจจุบันคือเมืองอุดะ)</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">โคโบ ไดชิ คุกายิ และการนำชาเข้ามาสู่ญี่ปุ่น</h3>
                 </div>
-            </section>
 
-            <!-- 商品ラインナップ -->
-            <section class="mb-16">
-                <h2 class="text-3xl md:text-4xl font-bold text-center mb-12 text-[#5E8C6A]">สินค้า</h2>
-                <!-- 日本版 -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">แพ็กเกจแบบญี่ปุ่น</h3>
-                    <div class="grid grid-cols-1 md:grid-cols-2 gap-8 items-center justify-items-center">
-                        <div class="text-center">
-                            <img src="images/kabuse_50g.jpg" alt="แพ็กเกจญี่ปุ่น คาบุเสะฉะ 50 กรัม" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">คาบุเสะฉะ 50 กรัม</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/fukamushi_50g.jpg" alt="แพ็กเกจญี่ปุ่น ฟุกะมุชิฉะ 50 กรัม" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">ฟุกะมุชิฉะ 50 กรัม</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/kabuse_leaf.jpg" alt="ตัวอย่างใบคาบุเสะฉะ" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">ตัวอย่างใบคาบุเสะฉะ</p>
-                        </div>
-                        <div class="text-center">
-                            <img src="images/fukamushi_leaf.jpg" alt="ตัวอย่างใบฟุกะมุชิฉะ" class="rounded-lg shadow-lg max-w-[200px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">ตัวอย่างใบฟุกะมุชิฉะ</p>
-                        </div>
-                        <div class="md:col-span-2 text-center mt-4">
-                            <img src="images/fukamushi_50g_100g.jpg" alt="แพ็กเกจญี่ปุ่น ฟุกะมุชิฉะ 100 กรัม และ 50 กรัม วางเทียบกัน" class="rounded-lg shadow-lg max-w-[300px] mx-auto">
-                            <p class="mt-2 font-bold text-[#4C4B46]">ฟุกะมุชิฉะ 100 กรัม & 50 กรัม</p>
-                        </div>
-                    </div>
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">แนะนำพื้นที่ผลิตชา (เขตทาวาระ เมืองนารา)</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">ภูมิอากาศและดินของเขตทาวาระ</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">ที่ราบสูงยามาโตะ ซึ่งเป็นพื้นที่หลักในการปลูกชา อยู่สูงจากระดับน้ำทะเล 200-500 เมตรและมีอากาศเย็นสบาย ความแตกต่างของอุณหภูมิระหว่างกลางวันและกลางคืนที่ชัดเจนทำให้ใบชาค่อยๆเจริญเติบโต ซึ่งเหมาะกับการพัฒนาให้เกิดกลิ่นหอมและรสละมุนลึกของชา</p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">โดยเฉพาะพื้นที่แถบทาวาระ ซึ่งเป็นที่รู้จักกันมาในฐานะแหล่งผลิตยามาโตะชา มีสภาพแวดล้อมอันอุดมสมบูรณ์</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">ไร่ชา ณ ที่ราบสูงยามาโตะ จังหวัดนารา</h3>
                 </div>
-                <!-- 海外版 -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200 mb-12">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">แพกเกจต่างประเทศ</h3>
-                    <div class="flex justify-center flex-wrap gap-8">
-                        <div class="text-center w-full md:w-1/2">
-                            <img src="images/greentea_eng.jpg" alt="แพกเกจต่างประเทศ 50 กรัม (แพ็กเกจด้านหน้าและด้านหลัง)" class="rounded-lg shadow-lg w-full h-auto object-contain mx-auto max-w-[800px] cursor-pointer" data-enlarge>
-                            <p class="mt-2 font-bold text-[#4C4B46]">ฉลากภาษาอังกฤษ (ปรับเปลี่ยนได้)</p>
-                        </div>
-                    </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">แนะนำผู้ผลิตชา</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">ขอแนะนำชาวไร่ชาที่ทุ่มเททั้งแรงใจและแรงกายในการสืบสานการปลูกยามาโตะชาในแถบทาวาระ</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">ซาวะ ฟุกุอิ / Tawara Natural Farm</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-2"><strong>คุณซาวะ ฟุกุอิ</strong></p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">หลังจากทำงานในห้างสรรพสินค้า คุณซาวะ ฟุกุอิ หันมาเลือกเส้นทางเกษตรกรรมเพื่อได้ใกล้ชิดธรรมชาติกับธรรมชาติมากขึ้น ภายใต้ความเชื่อที่ว่า “มนุษย์ ชา ผัก และแมลง・ทุกสิ่งล้วนเชื่อมโยงกัน" หรือ 結 (Yui) เธอปลูกชาและผักโดยไม่ใช้สารเคมีหรือปุ๋ยเคมีใดๆ ที่ไร่ชาเธอให้ความสำคัญของความสมดุลของธรรมชาติ ชาของเธอจึงมีลักษณะโดดเด่นด้วยรสหวานละมุนและรสฝาดอันกลมกล่อม</p>
+                    <p class="text-sm text-gray-600">เกษตรกรรมแบบหมุนเวียนทรัพยากร / ไม่ใช้สารกำจัดศัตรูพืช ปุ๋ยเคมี หรือยากำจัดวัชพืช</p>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">ชาวไร่แอปเปิ้ลคุโบตะผู้ผลิตมัทฉะปลอดสาร</h3>
+                    <p class="text-base md:text-lg leading-relaxed mb-2"><strong>คุณฮิโรชิ คุโบตะ</strong></p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">มัทฉะที่ผลิตโดยชาวไร่ผู้เกิดและเติบโตในครอบครัวผู้ปลูกชาที่สืบทอดมากว่า 100 ปี<br>หลังจากเกษียณเมื่ออายุ 60 ปี คุณฮิโรชิ คุโบตะ ได้เปลี่ยนพื้นที่บางส่วนของไร่ชามาเป็นสวนแอปเปิ้ล พื้นที่ในแถบทะวาระที่ตั้งฟาร์มมีความเหมาะสมกับการปลูกชา เพราะมีความแตกต่างของอุณหภูมิระหว่างกลางวันและกลางคืนสูง และมีแหล่งน้ำอุดมสมบูรณ์ เขาใช้เพียงปุ๋ยหมักอินทรีย์ในการปลูกชา และบดใบชาอย่างประณีตด้วยหินโม่ ทำให้ได้มัทฉะที่มีทั้งกลิ่นหอมเข้มข้นและรสหวานลึก สามารถดื่มเป็นเครื่องดื่มหรือใช้เป็นส่วนผสมในขนมหรือเบเกอรี่ก็ได้</p>
+                    <p class="text-sm text-gray-600">ปุ๋ยหมักอินทรีย์ / มัทฉะ</p>
                 </div>
-                <!-- 抹茶 -->
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <h3 class="text-2xl font-bold text-[#7A6C5B] mb-8 text-center">มัทฉะ</h3>
-                    <div class="flex justify-center">
-                        <div class="text-center">
-                            <img src="images/matcha_60g.jpg" alt="แพ็กเกจมัทฉะ 60g" class="rounded-lg shadow-lg max-w-[250px] w-full">
-                            <p class="mt-2 font-bold text-[#4C4B46]">มัทฉะ 60g</p>
-                        </div>
-                    </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">การบดมัทฉะด้วยโม่หิน</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">การใช้โม่หินเป็นวิธีดั้งเดิมในการบดใบชา เท็นฉะซึ่งเป็นวัตถุดิบของมัทฉะจะถูกบดให้เป็นผงก่อนที่จะบรรจุซอง ทั้งหินด้านบนและหินด้านล่างมีร่องซึ่งเป็นเส้นลายที่ถูกสลักไว้อย่างประณีต เมื่อใส่ใบชาเท็นฉะในหินด้านบนและหมุนด้ามจับ ใบชาจะถูกบดอย่างช้าๆ</p>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">แม้เครื่องจักรอย่างเครื่องปั่นหรือเครื่องบดจะสามารถผลิตมัทฉะได้รวดเร็ว แต่ผงชามักไม่ละเอียดเสมอกัน และความร้อนจากแรงเสียดสีก็ทำลายกลิ่นและรสชาติของชา การบดชาด้วยโม่หินอาจต้องใช้เวลาและมีขั้นตอนที่ยุ่งยากกว่า แต่ความร้อนจากการเสียดสีเกิดขึ้นน้อยกว่า ทำให้ได้มัทฉะที่มีเนื้อเนียนละเอียดเสมอกัน และมีกลิ่นหอมกว่า</p>
                 </div>
-            </section>
-            
-            <!-- 出典 -->
-            <section>
-                <h2 class="text-2xl md:text-3xl font-bold text-center mb-8 text-[#5E8C6A]">แหล่งอ้างอิง</h2>
-                <div class="bg-white/60 p-8 rounded-xl shadow-lg border border-gray-200">
-                    <ul class="list-none text-lg leading-loose">
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">สัมผัสรสชาติที่หลากหลาย</h2>
+                    <p class="text-base md:text-lg leading-relaxed mb-4">รสชาติและลักษณะเฉพาะของยามาโตะชาที่แตกต่างกันไปตามวิธีการผลิต<br>มาลองเปรียบเทียบเอกลักษณ์ของชาแต่ละอย่างโดยใช้กราฟแท่งกัน</p>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li><strong>เซนฉะ (Sencha)</strong>: มีกลิ่นหอม รสชาติกลมกล่อมด้วยอูมามิและความขมเล็กน้อยที่พอดี เป็นชาที่นิยมดื่มกันในชีวิตประจำวัน</li>
+                        <li><strong>คาบุเสะฉะ (Kabusecha)</strong>: ต้นชาถูกคลุมด้วยผ้าสีดำก่อนเก็บเกี่ยวเพื่อลดความฝาดและดึงรสอูมามิที่กลมกล่อมออกมา</li>
+                        <li><strong>ฟุกามุชิฉะ (Deep-steamed)</strong>: ใบชาผ่านการนึ่งนานกว่าปกติ ทำให้ได้รสชาติเข้มข้นและน้ำชาสีเขียวเข้ม มีความฝาดน้อย ดื่มง่าย รสนุ่มนวล</li>
+                        <li><strong>มัทฉะ (Matcha)</strong>: ชาเขียวบดละเอียดที่ได้จากการบดใบชา(เท็นฉะ)อย่างพิถีพิถันด้วยหินโม่หรือเครื่องมืออื่นๆ นิยมใช้ในพิธีชงชาญี่ปุ่น และยังใช้เป็นส่วนผสมในขนมหรืออาหารต่างๆได้ด้วย</li>
+                    </ul>
+                </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">สินค้า</h2>
+                    <h3 class="text-xl md:text-2xl font-semibold mb-2">แพ็กเกจแบบญี่ปุ่น</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>คาบุเสะฉะ 50 กรัม</li>
+                        <li>ฟุกะมุชิฉะ 50 กรัม</li>
+                        <li>ตัวอย่างใบคาบุเสะฉะ</li>
+                        <li>ตัวอย่างใบฟุกะมุชิฉะ</li>
+                        <li>ฟุกะมุชิฉะ 100 กรัม & 50 กรัม</li>
+                    </ul>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">แพกเกจต่างประเทศ</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>ชาเขียว 50 กรัม (บรรจุภัณฑ์ภาษาอังกฤษ ปรับแต่งได้)</li>
+                    </ul>
+                    <h3 class="text-xl md:text-2xl font-semibold mt-6 mb-2">มัทฉะ</h3>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
+                        <li>มัทฉะ 60 กรัม</li>
+                    </ul>
+                </div>
+
+                <hr class="border-[#C4B7A6]">
+
+                <div class="bg-[#EAE4D7] p-8 rounded-lg shadow-lg">
+                    <h2 class="text-2xl md:text-3xl font-bold text-[#8B8373] mb-4">แหล่งอ้างอิง</h2>
+                    <ul class="list-disc list-inside space-y-2 text-base md:text-lg leading-relaxed">
                         <li>กระทรวงเกษตร ป่าไม้ และประมง (MAFF)</li>
                         <li>หนังสือพิมพ์อาซาฮี (Asahi Shimbun)</li>
                         <li>Jalan.net</li>
@@ -564,10 +368,10 @@
                     </ul>
                 </div>
             </section>
-        </main>
-    </div>
+        </div>
 
-    <!-- The Modal -->
+    </main>
+
     <div id="imageModal" class="modal">
         <span class="close">&times;</span>
         <img class="modal-content" id="expandedImg">
@@ -575,167 +379,16 @@
 
     <script>
         function switchLanguage(lang) {
-            const contents = document.querySelectorAll('.language-content');
-            contents.forEach(content => {
-                content.classList.add('hidden');
-            });
-            document.getElementById('content-' + lang).classList.remove('hidden');
-            
-            // Re-render chart for the active language
-            renderCharts();
-        }
-
-        let myChartJa, myChartEn, myChartTh;
-
-        function renderCharts() {
-            // Destroy existing charts to avoid duplicates
-            if (myChartJa) myChartJa.destroy();
-            if (myChartEn) myChartEn.destroy();
-            if (myChartTh) myChartTh.destroy();
-
-            const flavorData = {
-                labels: ['香りの高さ', '旨み', '渋み'],
-                datasets: [{
-                    label: '煎茶',
-                    data: [4, 4, 3],
-                    borderColor: '#5E8C6A',
-                    backgroundColor: 'rgba(94, 140, 106, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: 'かぶせ茶',
-                    data: [5, 5, 2],
-                    borderColor: '#7A6C5B',
-                    backgroundColor: 'rgba(122, 108, 91, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: '深蒸し茶',
-                    data: [3, 5, 1],
-                    borderColor: '#4C4B46',
-                    backgroundColor: 'rgba(76, 75, 70, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: '抹茶',
-                    data: [5, 5, 4],
-                    borderColor: '#A8D8B6',
-                    backgroundColor: 'rgba(168, 216, 182, 0.2)',
-                    borderWidth: 1
-                }]
-            };
-
-            const flavorDataEn = {
-                labels: ['Aroma', 'Umami', 'Astringency'],
-                datasets: [{
-                    label: 'Sencha',
-                    data: [4, 4, 3],
-                    borderColor: '#5E8C6A',
-                    backgroundColor: 'rgba(94, 140, 106, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: 'Kabusecha',
-                    data: [5, 5, 2],
-                    borderColor: '#7A6C5B',
-                    backgroundColor: 'rgba(122, 108, 91, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: 'Fukamushicha',
-                    data: [3, 5, 1],
-                    borderColor: '#4C4B46',
-                    backgroundColor: 'rgba(76, 75, 70, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: 'Matcha',
-                    data: [5, 5, 4],
-                    borderColor: '#A8D8B6',
-                    backgroundColor: 'rgba(168, 216, 182, 0.2)',
-                    borderWidth: 1
-                }]
-            };
-
-            const flavorDataTh = {
-                labels: ['กลิ่นหอม', 'อูมามิ', 'ความฝาด'],
-                datasets: [{
-                    label: 'เซนฉะ',
-                    data: [4, 4, 3],
-                    borderColor: '#5E8C6A',
-                    backgroundColor: 'rgba(94, 140, 106, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: 'คาบุเสะฉะ',
-                    data: [5, 5, 2],
-                    borderColor: '#7A6C5B',
-                    backgroundColor: 'rgba(122, 108, 91, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: 'ฟุกามุชิฉะ',
-                    data: [3, 5, 1],
-                    borderColor: '#4C4B46',
-                    backgroundColor: 'rgba(76, 75, 70, 0.2)',
-                    borderWidth: 1
-                }, {
-                    label: 'มัทฉะ',
-                    data: [5, 5, 4],
-                    borderColor: '#A8D8B6',
-                    backgroundColor: 'rgba(168, 216, 182, 0.2)',
-                    borderWidth: 1
-                }]
-            };
-
-            const options = {
-                scales: {
-                    y: {
-                        beginAtZero: true,
-                        max: 5,
-                        grid: {
-                            color: 'rgba(200, 200, 200, 0.5)'
-                        }
-                    },
-                    x: {
-                        grid: {
-                            color: 'rgba(200, 200, 200, 0.5)'
-                        }
-                    }
-                },
-                responsive: true,
-                maintainAspectRatio: false,
-                plugins: {
-                    legend: {
-                        position: 'top',
-                    },
-                    tooltip: {
-                        mode: 'index',
-                        intersect: false,
-                    }
+            const languages = ['ja', 'en', 'th'];
+            languages.forEach(l => {
+                const contentDiv = document.getElementById(l + '-content');
+                if (contentDiv) {
+                    contentDiv.classList.add('hidden');
                 }
-            };
-            
-            // Japanese Chart
-            const ctxJa = document.getElementById('flavorChartJa');
-            if (ctxJa) {
-                myChartJa = new Chart(ctxJa, {
-                    type: 'bar',
-                    data: flavorData,
-                    options: options
-                });
-            }
-
-            // English Chart
-            const ctxEn = document.getElementById('flavorChartEn');
-            if (ctxEn) {
-                myChartEn = new Chart(ctxEn, {
-                    type: 'bar',
-                    data: flavorDataEn,
-                    options: options
-                });
-            }
-
-            // Thai Chart
-            const ctxTh = document.getElementById('flavorChartTh');
-            if (ctxTh) {
-                myChartTh = new Chart(ctxTh, {
-                    type: 'bar',
-                    data: flavorDataTh,
-                    options: options
-                });
+            });
+            const selectedContent = document.getElementById(lang + '-content');
+            if (selectedContent) {
+                selectedContent.classList.remove('hidden');
             }
         }
 
